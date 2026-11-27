@@ -14,8 +14,8 @@ python -m unittest discover -s tests -v
 
 ## 数据来源与核对
 
-- `data/indicators_2020_2024.csv` 由项目的 `南京数据表_27项_v5_20261127.csv` 按编号选取中文名、单位、方向、AHP 权重、五年原值、状态、数据出处和口径说明，原文件 SHA-256：`9ae687f25585b6990a2a01b19110156928122d79cebf77a0560f42ca16c4a9fb`。不填补缺测；新增 `exclude` 和用分号分隔的“假设年份”。年度量值来自南京、江苏统计年鉴、南京生态环境公报和卫健资料，逐行可追溯。`状态` 是指标级状态，不能据此断言每一年均为实测。
-- `data/weights.csv` 的五组及全局 AHP 权重、`data/thresholds.csv` 的 27 行五级原始区间分别源自 Xie & Pu (2017), *Assessment of Urban Ecosystem Health Based on Matter Element Analysis*, Table 2、Table 3，DOI：`10.3390/ijerph14080940`。本地论文为 `文献/Jiangsu2017.pdf`；区间直接取自项目所存原文 XML 的第三张表，顺序为病态至优良。附加的“阈值策略”不是原文字段。
+- `data/indicators_2020_2024.csv` 由项目的 `南京数据表_27项_v5_20261127.csv` 按编号选取中文名、单位、方向、AHP 权重、五年原值、状态、数据出处和口径说明，原文件 SHA-256：`9ae687f25585b6990a2a01b19110156928122d79cebf77a0560f42ca16c4a9fb`。不填补缺测；新增 `exclude` 和用分号分隔的“假设年份”。年度量值来自南京、江苏统计年鉴、卫健资料，逐行可追溯。`状态` 是指标级状态，不能据此断言每一年均为实测。
+- `data/weights.csv` 的五组及全局 AHP 权重、`data/thresholds.csv` 的 27 行五级原始区间分别源自 Xie & Pu (2017), *Assessment of Urban Ecosystem Health Based on Matter Element Analysis*, Table 2、Table 3，DOI：`10.3390/ijerph14080940`。本地论文为 `文献/Jiangsu2017.pdf`；区间直接取自项目所存原文 XML 的第三张表，顺序为病态至优良。
 - X16、X23 整段排除，X23 的 2020 实测仍保留在输入中。27 项权重实际合计 1.0002；保留 25 项逐项合计 0.8923，因此用实际合计而不是 0.8921 归一化。排除项权重为 0。
 
 ## 如何解释等级
@@ -38,19 +38,6 @@ python -m unittest discover -s tests -v
 - [结果解读（2020—2024）](docs/结果解读_2020_2024.md)：年度走势、五要素变化与可引用的结论。
 - [数据说明](docs/数据说明.md)：字段来源、代理指标换算、剔除与假设值标记。
 - [复现说明](docs/复现说明.md)：依赖安装、运行命令、输出核对与常见问题。
-
-## 推送到 GitHub 的步骤
-
-本仓库仅在本地初始化，无远端。稍后在 GitHub 建立空仓库；HTTPS 令牌方式需要具备该仓库 Contents 写权限的 `GITHUB_TOKEN`。在受信任的终端安全提供令牌，不要写入脚本、仓库、远端 URL 或命令历史。PowerShell 示例（使用前替换占位符）：
-
-```powershell
-# 仅当网络需要代理时设置；地址、端口按实际配置
-$env:https_proxy = 'http://代理主机:端口'
-git remote add origin https://github.com/OWNER/REPO.git
-git push -u origin HEAD:main
-```
-
-HTTPS 认证提示中输入 GitHub 用户名，密码处输入 `GITHUB_TOKEN` 的值；Git 不会自动读取同名环境变量。也可使用已配置的凭据管理器。直连无需 `https_proxy`；会话结束可用 `Remove-Item Env:https_proxy` 清理代理设置。
 
 ## 图形输出
 
