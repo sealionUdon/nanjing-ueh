@@ -51,3 +51,15 @@ git push -u origin HEAD:main
 ```
 
 HTTPS 认证提示中输入 GitHub 用户名，密码处输入 `GITHUB_TOKEN` 的值；Git 不会自动读取同名环境变量。也可使用已配置的凭据管理器。直连无需 `https_proxy`；会话结束可用 `Remove-Item Env:https_proxy` 清理代理设置。
+
+## 图形输出
+
+在仓库根目录运行 `python src/plots.py`，生成宽约 16 cm、300 dpi 的报告插图。图 1—3 使用「25项探索、含假设值」年度结果。要素得分表示对各自判定等级的支持度，解读时应结合要素等级。
+
+| 图形 | 用途 |
+| --- | --- |
+| [综合关联度趋势](outputs/figures/fig1_综合关联度趋势.png) | 对照各年优良关联度及综合判定等级 |
+| [五要素得分趋势](outputs/figures/fig2_五要素得分趋势.png) | 追踪各要素五年得分变化 |
+| [五要素雷达图](outputs/figures/fig3_五要素雷达图.png) | 对比首末两年的五要素得分 |
+| [关键指标变化](outputs/figures/fig4_关键指标变化.png) | 按原始单位查看能耗、废水、公交及床位变化 |
+| [指标等级分布](outputs/figures/fig5_指标等级分布.png) | 查看每年 25 项指标在五级中的数量 |
